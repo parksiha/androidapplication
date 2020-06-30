@@ -17,9 +17,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".memoActivity"
-            android:label= "메모 액티비티"
+            android:label= "간편 메모"
             android:theme="@style/Theme.AppCompat.Dialog">
         </activity>
+        <activity android:name=".timeActivity"
+            android:label="현재 시각"
+            android:theme="@style/Theme.AppCompat.Dialog">
+        </activity>
+
     </application>
+
 
 </manifest>
