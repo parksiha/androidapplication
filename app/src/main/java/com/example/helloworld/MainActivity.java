@@ -12,15 +12,16 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_MEMO = 101;
     public static final int REQUEST_CODE_TIME = 123;
+    public static final int REQUEST_CODE_LOCATE = 134;
 
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Button timebutton = findViewById(R.id.buttontime);
         timebutton.setOnClickListener(new View.OnClickListener(){
-
+            @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), timeActivity.class);
                 startActivityForResult(intent, REQUEST_CODE_TIME);
@@ -37,6 +38,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        Button buttonlocate = findViewById(R.id.button3);
+        buttonlocate.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getApplicationContext(), locateActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_LOCATE);
+
+            }
+        });
 
 
     }
@@ -46,22 +56,23 @@ public class MainActivity extends AppCompatActivity {
 
         if(data != null) {
             if(requestCode == REQUEST_CODE_TIME){
-                Toast.makeText(getApplicationContext(),
-                        "홈으로 돌아옴. 요청 코드 : "+ requestCode +
-                        ", 결과 코드 : " + resultCode, Toast.LENGTH_LONG).show();
                 if(resultCode == RESULT_OK){
                     String name = data.getStringExtra("name");
-                    Toast.makeText(getApplicationContext(), "응답으로 전달된 name : " + name,
+                    Toast.makeText(getApplicationContext(), "메인으로 돌아옴 name : " + name,
                             Toast.LENGTH_LONG).show();
                 }
             }
             if (requestCode == REQUEST_CODE_MEMO) {
-                Toast.makeText(getApplicationContext(),
-                        "홈으로 돌아옴. 요청 코드 : " + requestCode +
-                                ", 결과 코드 : " + resultCode, Toast.LENGTH_LONG).show();
                 if (resultCode == RESULT_OK) {
                     String name = data.getStringExtra("name");
-                    Toast.makeText(getApplicationContext(), "응답으로 전달된 name : " + name,
+                    Toast.makeText(getApplicationContext(), "메인으로 돌아옴 name : " + name,
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+            if (requestCode == REQUEST_CODE_LOCATE) {
+                if (resultCode == RESULT_OK) {
+                    String name = data.getStringExtra("name");
+                    Toast.makeText(getApplicationContext(), "메인으로 돌아옴 name : " + name,
                             Toast.LENGTH_LONG).show();
                 }
             }
